@@ -14,7 +14,8 @@ public interface SampleRepository  extends MongoRepository<Sample,Long>{
      * @param Sample
 	 * @return 
      */
-    public Sample save(Sample sample);
+    @SuppressWarnings("unchecked")
+	public Sample save(Sample sample);
     
     /**
      * Returns the list of samples with given key.

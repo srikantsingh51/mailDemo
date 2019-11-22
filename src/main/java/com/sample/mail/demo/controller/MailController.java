@@ -5,7 +5,6 @@ import com.sample.mail.demo.model.MailObject;
 import com.sample.mail.demo.service.MailService;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 public class MailController {
+	
 	@Autowired
 	MailService mailService ;
 	
 	@RequestMapping("/send" )
 	public String senMail(@RequestBody MailObject mailObject) {
 		MailObject obj =  mailService.sendMail(mailObject);
-		if(obj.getId()>0) {
+		if(obj.getId() > 0) {
 			return "Sucessfully Send";
 		}
 		return "System Failure";
@@ -30,7 +30,7 @@ public class MailController {
 	
 	
 	@RequestMapping("/findAll" )
-	public List<MailObject> findAll() {
+	public List<MailObject > findAll() {
 		List<MailObject> list =  mailService.findAll();
 		return list;
 	}
@@ -48,25 +48,19 @@ public class MailController {
 	}
 	
 	@RequestMapping("/findmailsoftheday" )
-	public List<MailObject> findABySentDate() {
-		List<MailObject> list =  mailService.findAllByDate(LocalDate.now());
-		return list;
+	public int findABySentDate() {
+		int  numberOfMails =  mailService.etimatedMailByToday(LocalDate.now());
+		return numberOfMails;
 	}
 	
 	@RequestMapping("/findmailsoftheweek" )
-	public List<MailObject> findMailsByWeek() {
-		List<MailObject> list =  mailService.findAllByDateRange(LocalDate.now().plusDays(1),LocalDate.now().minusDays(7));
-		return list;
+	public int findMailsByWeek() {
+		int numberOfMails =  mailService.etimatedMailByWeek(LocalDate.now().plusDays(1));
+		return numberOfMails;
 	}
 	
 	@RequestMapping("/readcontent/{id}" )
 	public String findABySentDate(@PathVariable Long id) {
 		return mailService.getMessageContentById(id);
 	}
-	
-	
-		
-	
-	
-
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -110,5 +111,39 @@ public class MailServiceTest {
 		when(mailObjectRepository.findAll()).thenReturn(Arrays.asList(mailObject,mailObject1));
 		String content = mailObjectService.getMessageContentById(2L);
 		assertEquals(content,"I am fine I will be there");
+	}
+	
+	@Ignore("This test is ignore because value is change by the time ")
+	@Test
+	public void testEtimatedMailByToday() {
+		when(mailObjectRepository.findAll()).thenReturn(Arrays.asList(mailObject,mailObject1
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject));
+				int value  = mailObjectService.etimatedMailByToday(LocalDate.now());
+				assertEquals(value,4);
+		
+	}
+	
+	@Ignore("This test is ignore because value is change by the time ")
+	@Test
+	public void testEtimatedMailByWeek() {
+		when(mailObjectRepository.findAll()).thenReturn(Arrays.asList(mailObject,mailObject1
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject
+											,mailObject,mailObject1 ,mailObject,mailObject));
+				int value  = mailObjectService.etimatedMailByWeek(LocalDate.now());
+				assertEquals(value,4);
+		
 	}
 }
