@@ -67,10 +67,10 @@ public class MailService {
 	   			    .truncatedTo(ChronoUnit.DAYS)
 	   			    .with(TemporalAdjusters.previous((DayOfWeek.SATURDAY)));
     	
-   		int mailSendTillNow = mailRepository.findAll().stream()
+   		Long count = mailRepository.findAll().stream()
    						.filter(mailObject -> mailObject.getDate().isBefore(toDate))
    						.filter(mailObject -> mailObject.getDate().isAfter( lasttSaturdayMidnight.toLocalDate()))
-   						.collect(Collectors.toList()).size(); 
+   						.count(); 
    		LocalDateTime nextSaturdayMidnight = LocalDateTime.now()
    			    // truncating to midnight
    			    .truncatedTo(ChronoUnit.DAYS)
@@ -82,7 +82,7 @@ public class MailService {
    			    // getting offset in hours
    			    .until(nextSaturdayMidnight, ChronoUnit.HOURS);
    			
-   			return estimatedNumOfMailByWeek(hoursUntilNextSaturdayMidnight.intValue(),mailSendTillNow);
+   			return estimatedNumOfMailByWeek(hoursUntilNextSaturdayMidnight.intValue(),count.intValue());
    			
      }
      
