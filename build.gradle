@@ -1,0 +1,28 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.sample.mail'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+ext.springMongoVersion = '2.2.2.RELEASE'
+ext.junitVersion = '4.12'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile group: 'org.springframework.data', name: 'spring-data-mongodb', version: '2.2.2.RELEASE'
+	testCompile "junit:junit:${junitVersion}","org.mockito:mockito-core:1.+" 
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
