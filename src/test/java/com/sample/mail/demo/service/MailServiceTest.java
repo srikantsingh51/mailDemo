@@ -23,7 +23,7 @@ public class MailServiceTest {
 	private MailObjectRepository mailObjectRepository;
 	
 	@InjectMocks
-	private MailService   mailObjectService;
+	private MailServiceImpl   mailObjectService;
 	
 	private 
 	MailObject mailObject ;
@@ -125,7 +125,7 @@ public class MailServiceTest {
 											,mailObject,mailObject1 ,mailObject,mailObject
 											,mailObject,mailObject1 ,mailObject,mailObject
 											,mailObject,mailObject1 ,mailObject,mailObject));
-				int value  = mailObjectService.etimatedMailByToday(LocalDate.now());
+				int value  = mailObjectService.estimatedMailByToday();
 				assertEquals(value,4);
 		
 	}
@@ -142,7 +142,7 @@ public class MailServiceTest {
 											,mailObject,mailObject1 ,mailObject,mailObject
 											,mailObject,mailObject1 ,mailObject,mailObject
 											,mailObject,mailObject1 ,mailObject,mailObject));
-				int value  = mailObjectService.etimatedMailByWeek(LocalDate.now());
+				int value  = mailObjectService.estimatedMailByWeek();
 				assertEquals(value,4);
 		
 	}
