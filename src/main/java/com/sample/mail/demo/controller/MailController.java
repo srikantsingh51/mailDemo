@@ -62,7 +62,7 @@ public class MailController {
 	public List<MailObject> findAByReciever(@PathVariable String recieverName) throws NoMailFoundException{
 		List<MailObject> list = null;
 		try {
-			list =  mailService.findAllByReciever(recieverName);
+				list =  mailService.findAllByReciever(recieverName);
 		}catch(NoMailFoundException e) {e.getStackTrace();}
 		return list;
 	}
@@ -89,7 +89,7 @@ public class MailController {
 	}
 	
 	@RequestMapping("/readcontent/{id}" )
-	public String findABySentDate(@PathVariable Long id) {
+	public String readContentById(@PathVariable Long id) {
 		return mailService.getMessageContentById(id);
 	}
 }
