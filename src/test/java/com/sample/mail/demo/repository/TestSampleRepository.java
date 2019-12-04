@@ -35,12 +35,9 @@ public class TestSampleRepository {
 		Sample sam = mongoTemplate.save(sample);
 		assertEquals(sam.getKey(),"A");
 	}
-	
-	
+		
 	@Test
 	public void saveSample() {
 		sampleRepository.save(sample);
 	}
-	
-
 }
