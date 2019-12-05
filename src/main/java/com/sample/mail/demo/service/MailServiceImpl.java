@@ -26,7 +26,7 @@ public class MailServiceImpl implements MailService{
 	public MailObject sendMail(MailObject mailObject) throws EmailSendException {
 		   mailObject.setDate(LocalDate.now());
 		   MailObject savedMail = mailRepository.insert(mailObject);
-		   return savedMail;
+		 return savedMail;
 		
 	}
 	
@@ -100,9 +100,13 @@ public class MailServiceImpl implements MailService{
 	
 	@Override 
     public String getMessageContentById(Long id) {
-    	 return mailRepository.findAll().stream()
-    			  	   .filter(mailObject -> mailObject.getId()==id)
-    			  	   .findAny().get().getContent();
+		
+	
+			MailObject mObject = mailRepository.findById(id).get();
+			mObject.setRead(true);
+			mailRepository.save(mObject);
+	  	   
+    	 return mObject.getContent();
      }
         
 	private int estimatedNumOfMailToday(int hrRemaining,int numberOfSendMail) {
