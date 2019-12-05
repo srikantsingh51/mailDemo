@@ -100,12 +100,9 @@ public class MailServiceImpl implements MailService{
 	
 	@Override 
     public String getMessageContentById(Long id) {
-		
-	
 			MailObject mObject = mailRepository.findById(id).get();
 			mObject.setRead(true);
-			mailRepository.save(mObject);
-	  	   
+			mailRepository.save(mObject);   
     	 return mObject.getContent();
      }
         
