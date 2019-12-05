@@ -19,6 +19,16 @@ public class MailObject {
 	private String content;
 	
 	private LocalDate  date;
+	
+	private boolean isRead;
+
+	public boolean isRead() {
+		return isRead;
+	}
+
+	public void setRead(boolean isRead) {
+		this.isRead = isRead;
+	}
 
 	public Long getId() {
 		return id;
